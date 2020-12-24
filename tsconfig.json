@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "cropperjs-wrapper": [
+        "dist/cropperjs-wrapper"
+      ],
+      "cropperjs-wrapper/*": [
+        "dist/cropperjs-wrapper/*"
+      ]
+    }
   }
 }
