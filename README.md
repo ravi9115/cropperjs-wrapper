@@ -1,6 +1,85 @@
-# AngularPackages
+# cropperjs-wrapper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
+[CropperJS](https://fengyuanchen.github.io/cropperjs/) integration for Angular 7+
+
+## How to use
+
+1- Install the library:
+
+```bash
+$ npm install cropperjs-wrapper --save
+```
+
+2- Import and load `CropperjsWrapperModule` in the module you want to use, for example `AppModule`:
+
+```typescript
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppComponent } from './app.component';
+
+//
+// Import cropperjs-wrapper
+import { CropperjsWrapperModule } from 'cropperjs-wrapper';
+
+@NgModule({
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule,
+
+        //
+        // Load cropperjs-wrapper
+        CropperjsWrapperModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
+})
+export class AppModule {}
+```
+
+3- Use the component in your template like this:
+
+```html
+<!-- You can now use angular-cropper component in app.component.html -->
+<cropper-wrapper [cropperOptions]="config" [imageUrl]="imageUrl"></cropper-wrapper>
+```
+
+**Using CropperJS methods:**
+
+Use @ViewChild in your component to get the element:
+
+_In your app.component.html_
+
+```html
+<cropper-wrapper #cropperWrapper ..></cropper-wrapper>
+```
+
+_And in your app.component.ts_
+
+```js
+
+//
+// Import CropperWrapperComponent
+import { CropperWrapperComponent } from 'cropper-wrapper';
+
+//
+// Get with @ViewChild
+@ViewChild('cropperWrapper') public cropperWrapper: CropperWrapperComponent;
+```
+
+Then just call the CropperJS method you want:
+
+_anywhere in your app.component.ts_
+
+```js
+//
+// Lets try to zoom
+this.cropperWrapper.cropper.zoom(0.1);
+```
+
+# Development
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
 
 ## Development server
 
@@ -25,3 +104,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## License
+
+MIT © [Ravi Jain](mailto:ravi9115ravi@gmail.com)
