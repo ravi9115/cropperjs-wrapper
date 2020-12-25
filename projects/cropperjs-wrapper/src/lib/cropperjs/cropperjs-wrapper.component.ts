@@ -6,7 +6,8 @@ import {
   ViewChild,
   Input,
   EventEmitter,
-  Output
+  Output,
+  OnDestroy
 } from '@angular/core';
 import Cropper from 'cropperjs';
 
@@ -28,7 +29,7 @@ export interface ImageCropperResult {
   styleUrls: ['./cropperjs-wrapper.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CropperjsWrapperComponent implements OnInit {
+export class CropperjsWrapperComponent implements OnInit, OnDestroy {
 
   @ViewChild('image') image: ElementRef;
 
@@ -70,6 +71,13 @@ export class CropperjsWrapperComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  ngOnDestroy() {
+    if (this.cropper) {
+      this.cropper.destroy();
+      this.cropper = null;
+    }
+  }
 
   imageLoaded(ev: Event) {
     // Unset load error state
